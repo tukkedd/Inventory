@@ -49,21 +49,30 @@ export default function ProductList() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-4">
+        <div className="max-w-4xl mx-auto px-2">
+            <div className="flex flex-wrap gap-2 mb-4">
                 <Input
                     placeholder="Buscar producto..."
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className="flex-1"
+                    className="flex-1 min-w-[180px]"
                 />
-                <Button onClick={() => { setEditProduct(null); setShowForm(true); }}>
+                <Button
+                    onClick={() => { setEditProduct(null); setShowForm(true); }}
+                    className="w-full sm:w-auto"
+                >
                     Agregar producto
                 </Button>
-                <Button onClick={() => setShowCategoryModal(true)} className="bg-green-500 hover:bg-green-600">
+                <Button
+                    onClick={() => setShowCategoryModal(true)}
+                    className="bg-green-500 hover:bg-green-600 w-full sm:w-auto"
+                >
                     Nueva categoría
                 </Button>
-                <Button onClick={() => setShowVehicleModal(true)} className="bg-blue-500 hover:bg-blue-600">
+                <Button
+                    onClick={() => setShowVehicleModal(true)}
+                    className="bg-blue-500 hover:bg-blue-600 w-full sm:w-auto"
+                >
                     Nuevo vehículo
                 </Button>
             </div>
@@ -172,45 +181,47 @@ export default function ProductList() {
                 </div>
             )}
 
-            <table className="min-w-full border bg-white rounded shadow mt-8">
-                <thead>
-                    <tr>
-                        <th className="border px-2 select-none cursor-default">Nombre</th>
-                        <th className="border px-2 select-none cursor-default">Precio</th>
-                        <th className="border px-2 select-none cursor-default">Stock</th>
-                        <th className="border px-2 select-none cursor-default">Categoría</th>
-                        <th className="border px-2 select-none cursor-default">Vehículo</th>
-                        <th className="border px-2 select-none cursor-default">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filtered.map(p => (
-                        <tr key={p.id}>
-                            <td className="border px-2 select-none cursor-default">{p.name}</td>
-                            <td className="border px-2 select-none cursor-default">{p.price}</td>
-                            <td className="border px-2 select-none cursor-default">{p.stock}</td>
-                            <td className="border px-2 select-none cursor-default">{p.category?.name}</td>
-                            <td className="border px-2 select-none cursor-default">{p.vehicle?.name}</td>
-                            <td className="border px-2 flex gap-2 select-none cursor-default">
-                                <Button
-                                    onClick={() => { setEditProduct(p); setShowForm(true); }}
-                                    className="flex items-center gap-1 bg-yellow-400 text-black hover:bg-yellow-500 px-3 py-1 rounded shadow transition"
-                                    title="Editar"
-                                >
-                                    <Edit size={16} /> Editar
-                                </Button>
-                                <Button
-                                    onClick={() => setDeleteProduct(p)}
-                                    className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow transition"
-                                    title="Eliminar"
-                                >
-                                    <Trash2 size={16} /> Eliminar
-                                </Button>
-                            </td>
+            <div className="overflow-x-auto">
+                <table className="min-w-full border bg-white rounded shadow mt-8">
+                    <thead>
+                        <tr>
+                            <th className="border px-2">Nombre</th>
+                            <th className="border px-2">Precio</th>
+                            <th className="border px-2">Stock</th>
+                            <th className="border px-2">Categoría</th>
+                            <th className="border px-2">Vehículo</th>
+                            <th className="border px-2">Acciones</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filtered.map(p => (
+                            <tr key={p.id}>
+                                <td className="border px-2">{p.name}</td>
+                                <td className="border px-2">{p.price}</td>
+                                <td className="border px-2">{p.stock}</td>
+                                <td className="border px-2">{p.category?.name}</td>
+                                <td className="border px-2">{p.vehicle?.name}</td>
+                                <td className="border px-2 flex flex-col sm:flex-row gap-2">
+                                    <Button
+                                        onClick={() => { setEditProduct(p); setShowForm(true); }}
+                                        className="flex items-center gap-1 bg-yellow-400 text-black hover:bg-yellow-500 px-3 py-1 rounded shadow transition"
+                                        title="Editar"
+                                    >
+                                        <Edit size={16} /> Editar
+                                    </Button>
+                                    <Button
+                                        onClick={() => setDeleteProduct(p)}
+                                        className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow transition"
+                                        title="Eliminar"
+                                    >
+                                        <Trash2 size={16} /> Eliminar
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
