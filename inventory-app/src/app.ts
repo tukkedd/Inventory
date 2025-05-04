@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // en inventory-app/src/app.ts
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3020
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto https://localhost:${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
