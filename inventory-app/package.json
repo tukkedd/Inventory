@@ -4,9 +4,11 @@
   "description": "A simple inventory management application with CRUD operations for products.",
   "main": "src/app.ts",
   "scripts": {
-    "start": "ts-node src/app.ts",
     "build": "tsc",
-    "dev": "ts-node-dev src/app.ts"
+    "start": "node dist/app.js",
+    "dev": "ts-node-dev src/app.ts",
+    "postinstall": "prisma generate",
+    "migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",
