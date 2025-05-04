@@ -22,15 +22,13 @@ model Vehicle {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   description String?
   price       Float
   stock       Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  categoryId  Int
-  vehicleId   Int
-  category    Category @relation(fields: [categoryId], references: [id])
-  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+  categoryId  Int?      // <- debe ser Int?
+  vehicleId   Int?      // <- debe ser Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  vehicle     Vehicle?  @relation(fields: [vehicleId], references: [id])
 }
